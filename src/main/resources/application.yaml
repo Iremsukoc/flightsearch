@@ -1,0 +1,125 @@
+openapi: 3.0.0
+info:
+  title: FlightService API
+  version: 1.0.0
+paths:
+  /flights/delete-flight-by-id:
+    delete:
+      summary: Delete Flight by ID
+      tags:
+        - flights
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FlightIdDto'
+      responses:
+        '200':
+          description: Flight successfully deleted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResponseDto'
+        '500':
+          description: Flight deletion failed.
+
+  /flights/create-flight:
+    post:
+      summary: Create Flight
+      tags:
+        - flights
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRequestDto'
+      responses:
+        '200':
+          description: Flight successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResponseDto'
+        '500':
+          description: Flight creation failed.
+
+  /flights/get-flight-by-id:
+    get:
+      summary: Get Flight by ID
+      tags:
+        - flights
+      parameters:
+        - name: flightIdDto
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FlightIdDto'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlightResponseDto'
+
+  /flights/update-flight:
+    put:
+      summary: Update Flight
+      tags:
+        - flights
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFlightRequestDto'
+      responses:
+        '200':
+          description: Flight successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResponseDto'
+        '500':
+          description: Flight update failed.
+
+components:
+  schemas:
+    FlightIdDto:
+      type: object
+      properties:
+        flightId:
+          type: integer
+      required:
+        - flightId
+
+    CreateRequestDto:
+      type: object
+      properties:
+        // Properties for creating a flight
+      required:
+        - // Required properties
+
+    QueryResponseDto:
+      type: object
+      properties:
+        message:
+          type: string
+      required:
+        - message
+
+    FlightResponseDto:
+      type: object
+      properties:
+        // Properties for a flight response
+      required:
+        - // Required properties
+
+    UpdateFlightRequestDto:
+      type: object
+      properties:
+        // Properties for updating a flight
+      required:
+        - // Required properties
